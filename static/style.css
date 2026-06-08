@@ -1,0 +1,170 @@
+/* Global */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+
+/* Header */
+
+header{
+    text-align:center;
+    padding:30px 20px;
+    background:#181818;
+    border-bottom:1px solid #2a2a2a;
+}
+
+header h1{
+    font-size:2.2rem;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#aaa;
+}
+
+/* Gallery */
+
+.gallery-grid{
+    column-count:4;
+    column-gap:20px;
+    padding:25px;
+    max-width:1600px;
+    margin:auto;
+}
+
+/* Card */
+
+.card{
+    background:#1a1a1a;
+    border-radius:16px;
+    overflow:hidden;
+    margin-bottom:20px;
+    display:inline-block;
+    width:100%;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+/* Image */
+
+.card img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+/* Content */
+
+.content{
+    padding:15px;
+}
+
+.prompt-text{
+    background:#111;
+    color:#d0d0d0;
+    padding:12px;
+    border-radius:10px;
+    line-height:1.5;
+    word-wrap:break-word;
+    margin-bottom:12px;
+}
+
+/* Button */
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#0d6efd;
+    color:white;
+    font-weight:bold;
+    transition:.3s;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+/* Upload Form */
+
+.upload-container{
+    max-width:700px;
+    margin:40px auto;
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:16px;
+}
+
+input[type="file"]{
+    width:100%;
+    margin-bottom:15px;
+    color:white;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    background:#111;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    resize:vertical;
+}
+
+footer{
+    text-align:center;
+    color:#888;
+    padding:30px;
+}
+
+/* Tablet */
+
+@media(max-width:1200px){
+
+    .gallery-grid{
+        column-count:3;
+    }
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .gallery-grid{
+        column-count:2;
+        padding:15px;
+        column-gap:15px;
+    }
+
+    header h1{
+        font-size:1.8rem;
+    }
+}
+
+/* Small Mobile */
+
+@media(max-width:500px){
+
+    .gallery-grid{
+        column-count:1;
+    }
+
+    header h1{
+        font-size:1.5rem;
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Upload Image</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"
+>
+</head>
+
+<body>
+
+<div class="upload-container">
+<h1>Upload New Image</h1>
+
+<form
+    method="POST"
+    enctype="multipart/form-data"
+>
+
+    <label>
+        Select Image
+    </label>
+
+    <br><br>
+
+    <input
+        type="file"
+        name="file"
+        accept=".png,.jpg,.jpeg,.webp"
+        required
+    >
+
+    <br><br>
+
+    <label>
+        Prompt
+    </label>
+
+    <br><br>
+
+    <textarea
+        name="prompt"
+        placeholder="Enter prompt here..."
+        required
+    ></textarea>
+
+    <br><br>
+
+    <button type="submit">
+
+        Upload Image
+
+    </button>
+
+</form>
+
+<br>
+
+<a href="/">
+
+    <button
+        style="
+        background:#6c757d;
+        ">
+        Back To Gallery
+    </button>
+
+</a>
+</div>
+
+</body>
+</html>

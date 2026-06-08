@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Deepak Seen - AI Gallery</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"
+>
+
+</head>
+
+<body>
+
+<header>
+<h1>Deepak Seen</h1>
+
+<p>AI Generated Gallery</p>
+
+{% if session.get("admin") %}
+
+    <div style="margin-top:15px;">
+
+        <a href="/upload">
+
+            <button
+                style="
+                width:200px;
+                ">
+                Upload Image
+            </button>
+
+        </a>
+
+        <a href="/logout">
+
+            <button
+                style="
+                width:200px;
+                background:#dc3545;
+                margin-top:10px;
+                ">
+                Logout
+            </button>
+
+        </a>
+
+    </div>
+
+{% else %}
+
+    <div style="margin-top:15px;">
+
+        <a href="/admin">
+
+            <button
+                style="
+                width:200px;
+                ">
+                Admin Login
+            </button>
+
+        </a>
+
+    </div>
+
+{% endif %}
+</header>
+
+<main class="gallery-grid">
+{% if artworks %}
+
+    {% for art in artworks %}
+
+    <div class="card">
+
+        <img
+            src="{{ art.image_url }}"
+            alt="AI Image"
+            loading="lazy"
+        >
+
+        <div class="content">
+
+    <p class="prompt-text">
+        {{ art.prompt }}
+    </p>
+
+    <button
+        onclick="copyPrompt(this)"
+        data-prompt="{{ art.prompt }}">
+        Copy Prompt
+    </button>
+
+    {% if session.get("admin") %}
+
+    <a
+        href="/delete/{{ art.index }}"
+        onclick="return confirm('Delete this image?')">
+
+        <button
+            style="
+            margin-top:10px;
+            background:#dc3545;">
+            Delete
+        </button>
+
+    </a>
+
+    {% endif %}
+
+</div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div
+        style="
+        text-align:center;
+        width:100%;
+        padding:50px;
+        "
+    >
+
+        <h2>No Images Yet</h2>
+
+        <p>
+            Upload your first image.
+        </p>
+
+    </div>
+
+{% endif %}
+
+</main>
+
+<footer>
+<p>
+
+    © 2026 Deepak Seen
+
+</p>
+</footer>
+
+<script>
+
+function copyPrompt(text){
+
+    if(navigator.clipboard){
+
+        navigator.clipboard
+        .writeText(text)
+        .then(() => {
+
+            alert(
+                "Prompt Copied!"
+            );
+
+        })
+        .catch(() => {
+
+            fallbackCopy(text);
+
+        });
+
+    }else{
+
+        fallbackCopy(text);
+
+    }
+
+}
+
+function fallbackCopy(text){
+
+    const textarea =
+        document.createElement("textarea");
+
+    textarea.value = text;
+
+    document.body.appendChild(
+        textarea
+    );
+
+    textarea.select();
+
+    document.execCommand(
+        "copy"
+    );
+
+    document.body.removeChild(
+        textarea
+    );
+
+    alert(
+        "Prompt Copied!"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
