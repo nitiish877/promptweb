@@ -18,7 +18,7 @@ cloudinary.config(
     secure=True
 )
 
-mongo_uri = os.environ.get("MONGO_URI", "mongodb://localhost:27016/")
+mongo_uri = os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
 client = MongoClient(mongo_uri)
 db = client["ai_gallery"]
 collection = db["artworks"]
@@ -31,12 +31,15 @@ def allowed_file(filename: str) -> bool:
 @app.route("/")
 def index():
     artworks = []
-    for item in collection.find().sort("_id", -1):
-        artworks.append({
-            "id": str(item["_id"]),
-            "image_url": item.get("image_url"),
-            "prompt": item.get("prompt", "")
-        })
+    try:
+        for item in collection.find().sort("_id", -1):
+            artworks.append({
+                "id": str(item["_id"]),
+                "image_url": item.get("image_url"),
+                "prompt": item.get("prompt", "")
+            })
+    except Exception as e:
+        return f"Database Connection Error: {str(e)}", 500
     return render_template("index.html", artworks=artworks)
 
 
