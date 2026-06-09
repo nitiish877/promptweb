@@ -1,4 +1,6 @@
 Flask
 cloudinary
+pymongo
+dnspython
 gunicorn
 Werkzeug
