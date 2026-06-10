@@ -30,8 +30,11 @@ def allowed_file(filename: str) -> bool:
 
 @app.route("/")
 def index():
-    return "Home Route Working"
-
+    artworks = []
+    return render_template(
+        "index.html",
+        artworks=artworks
+    )
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin_login():
