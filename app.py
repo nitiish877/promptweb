@@ -30,28 +30,7 @@ def allowed_file(filename: str) -> bool:
 
 @app.route("/")
 def index():
-    try:
-
-        artworks = []
-
-        for item in collection.find():
-
-            artworks.append({
-                "index": str(item["_id"]),
-                "image_url": item.get("image_url"),
-                "prompt": item.get("prompt", "")
-            })
-
-        artworks.reverse()
-
-        return render_template(
-            "index.html",
-            artworks=artworks
-        )
-
-    except Exception as e:
-
-        return f"Database Connection Error: {e}"
+    return "Home Route Working"
 
 
 @app.route("/admin", methods=["GET", "POST"])
