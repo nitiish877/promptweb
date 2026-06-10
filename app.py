@@ -27,14 +27,15 @@ collection = db["artworks"]
 def allowed_file(filename: str) -> bool:
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
 @app.route("/")
 def index():
-    artworks = []
-    return render_template(
-        "index.html",
-        artworks=artworks
-    )
+    try:
+        count = collection.count_documents({})
+        return f"Documents Found: {count}"
+
+    except Exception as e:
+        return f"MongoDB Error: {e}"
+
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin_login():
