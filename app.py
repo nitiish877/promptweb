@@ -123,6 +123,19 @@ def delete_art(art_id):
 
     return redirect("/")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
